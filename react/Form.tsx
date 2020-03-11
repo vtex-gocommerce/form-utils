@@ -110,11 +110,13 @@ class Form extends React.PureComponent<Props> {
 
   render() {
     const { initialValues, onSubmit, children, validationSchema, id } = this.props
+
     return (
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
+        enableReinitialize
       >
         {(formikProps: FormikProps<{ [key: string]: any }>) => (
           <form onSubmit={formikProps.handleSubmit} id={id}>
