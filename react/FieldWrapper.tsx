@@ -14,12 +14,12 @@ const Wrapper = ({ formType, children, ...inputProps }: Props) => {
   const [field, meta] = useField(inputProps)
   const { setFieldValue } = useFormikContext()
 
-  const onClick = (e: React.ChangeEvent<any>, checked: boolean) => {
-    setFieldValue(inputProps.name, e.target.value || checked)
-  }
-
   const onChange = (value: string) => {
     setFieldValue(inputProps.name, value)
+  }
+
+  const onClick = () => {
+    setFieldValue(inputProps.name, !field.value)
   }
 
   return children({
@@ -29,8 +29,8 @@ const Wrapper = ({ formType, children, ...inputProps }: Props) => {
     hasError: !!meta.touched && !!meta.error, // gc error
     values: field.value,
     checked: field.checked,
-    onClick,
     ...(formType === 'DateTimePicker' ? { onChange } : {}),
+    ...(formType === 'Toggle' ? { onChange: onClick } : {})
   })
 }
 
