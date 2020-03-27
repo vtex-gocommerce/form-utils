@@ -95,7 +95,7 @@ class Form extends React.PureComponent<Props> {
       return (
         <Button
           {...this.props}
-          disabled={!isFormReady}
+          disabled={!isFormReady || this.props['disabled']}
           type="submit"
           onClick={() => {
             if (!formId) return null
