@@ -32,27 +32,30 @@ class Form extends React.PureComponent<Props> {
     }
   }
 
-  static Input = props => (
-    <Wrapper formType="Input" {...props}>
-      {wrappedProps => <Input {...wrappedProps} />}
-    </Wrapper>
-  )
+  static Input = props => {
+    if (props.mask) {
+      const maskProps = {
+        ...props,
+        guide: props.guide || false,
+        maskChar: props.maskChar || '\u2000',
+        mask: (typeof props.mask === 'string') ? props.mask.split('').map(e => e === '9' ? /\d/ : e) : props.mask
+      }
 
-  static MaskedInput = props => {
-    const maskProps = {
-      ...props,
-      guide: props.guide || false,
-      maskChar: props.maskChar || '\u2000',
-      mask: (typeof props.mask === 'string') ? props.mask.split('').map(e => e === '9' ? /\d/ : e) : props.mask
+      return (
+        <Wrapper formType="Input" {...maskProps}>
+          {wrappedProps =>
+            <MaskedInput
+              {...wrappedProps}
+              render={(ref: (inputElement: HTMLElement) => void, maskedProps: any) => <Input ref={ref} {...maskedProps} />}
+            />
+          }
+        </Wrapper>
+      )
     }
+
     return (
-      <Wrapper formType="MaskedInput" {...maskProps}>
-        {wrappedProps =>
-          <MaskedInput
-            {...wrappedProps}
-            render={(ref: (inputElement: HTMLElement) => void, maskedProps: any) => <Input ref={ref} {...maskedProps} />}
-          />
-        }
+      <Wrapper formType="Input" {...props}>
+        {wrappedProps => <Input {...wrappedProps} />}
       </Wrapper>
     )
   }
