@@ -12,8 +12,10 @@ import {
   Textarea,
   Toggle,
 } from 'vtex.styleguide'
+import MaskedInput from 'react-text-mask'
 
 import Wrapper from './FieldWrapper'
+
 
 interface Props {
   id: string
@@ -35,6 +37,25 @@ class Form extends React.PureComponent<Props> {
       {wrappedProps => <Input {...wrappedProps} />}
     </Wrapper>
   )
+
+  static MaskedInput = props => {
+    const maskProps = {
+      ...props,
+      guide: props.guide || false,
+      maskChar: props.maskChar || '\u2000',
+      mask: (typeof props.mask === 'string') ? props.mask.split('').map(e => e === '9' ? /\d/ : e) : props.mask
+    }
+    return (
+      <Wrapper formType="MaskedInput" {...maskProps}>
+        {wrappedProps =>
+          <MaskedInput
+            {...wrappedProps}
+            render={(ref: (inputElement: HTMLElement) => void, maskedProps: any) => <Input ref={ref} {...maskedProps} />}
+          />
+        }
+      </Wrapper>
+    )
+  }
 
   static InputCurrency = props => (
     <Wrapper formType="InputCurrency" {...props}>
