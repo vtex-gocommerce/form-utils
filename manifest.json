@@ -1,7 +1,7 @@
 {
   "vendor": "gocommerce",
   "name": "form-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "title": "Form Utils",
   "description": "Build forms the easy way",
   "builders": {
