@@ -15,6 +15,7 @@ import {
 import MaskedInput from 'react-text-mask'
 
 import Wrapper from './FieldWrapper'
+import { getCountries } from './utils/countries'
 
 
 interface Props {
@@ -95,6 +96,16 @@ class Form extends React.PureComponent<Props> {
       {wrapperProps => <Select {...wrapperProps} />}
     </Wrapper>
   )
+
+  static SelectCountry = props => {
+    const countryOptions = getCountries(props?.includedCountries, props?.language)
+    const selectCountryProps = { ...props, options: countryOptions }
+    return (
+      <Wrapper formType="SelectCountry" {...selectCountryProps}>
+        {wrapperProps => <Select {...wrapperProps} />}
+      </Wrapper>
+    )
+  }
 
   static Checkbox = props => (
     <Wrapper formType="CheckBox" {...props} type="checkbox">

@@ -2990,6 +2990,11 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+i18n-country-code@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/i18n-country-code/-/i18n-country-code-1.0.1.tgz#4e20bca28b499d6b39a0f452f29a000c9e508127"
+  integrity sha512-XXItag83EV+M6bMXMqSh81zvY7ULAgl0CRM0vMmBvg7XHLnJdqm2eNOKj+VdDrrLsixHhhjoy7LI6p1LC+4YTA==
+
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"

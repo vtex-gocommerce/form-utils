@@ -1,0 +1,1 @@
+declare module 'i18n-country-code/locales/*.json'
